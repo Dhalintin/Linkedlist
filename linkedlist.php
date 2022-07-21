@@ -3,9 +3,9 @@
 class Node
 {
     public $value;
-    //public ?Node $next = null;
-    public function __construct($value,  ?Node $next = null) { }
-}
+    
+    public function __construct($value,  public ?Node $next = null) { }
+} 
 
 
 class LinkedList
@@ -20,10 +20,6 @@ class LinkedList
  
         while ($node) {
             echo $node->value;
- 
-            if ($node = $node->next) {
-                echo ' -> ';
-            }
         }
         echo "\n";
     }
@@ -35,9 +31,7 @@ class LinkedList
     }
 }
 
-$a = $linkedlist->addValue('A');
-$linkedlist->print(); // A
-/* 
-$b = $linkedlist->addValue('B');
-$linkedlist->print(); // B -> A
-*/
+$a = new LinkedList();
+
+$a->addValue('A');
+$a->print(); // A
