@@ -19,15 +19,9 @@ class LinkedList{
     //Function to add value to the linkedlist
     public function addValue($value): Node
     {
-        if (!$this->head) {
-            $this->head = $node = new Node($value, $this->head);
-            $this->tail ??= $node; // Store node as tail if tail is empty.
-         
-            return $node;
-        }
-        
-        return $this->insertAfter($value, $this->tail);
-        
+        $this->head = $node = new Node($value, $this->head);
+     
+        return $node;
     }
 
     //Function to Print out value 
@@ -41,18 +35,6 @@ class LinkedList{
                 echo "->";
             }
         }
-    }
-
-    public function insertAfter($value, Node $position): Node
-    {
-        $position->next = $node = new Node($value, $position->next);
-    
-        // Update tail if we append a new node after it.
-        if ($position === $this->tail) {
-            $this->tail = $node;
-        }
-    
-        return $node;
     }
 }
 
@@ -71,10 +53,10 @@ $h = $list->addValue('H');
 
 
 $list->print(); 
+
 /*Expected Output
 
     H->G->F->E->D->C->B->A
 
 */
 
-//var_dump($list);
