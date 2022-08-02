@@ -86,27 +86,40 @@ class LinkedList{
 }
 
 
-//Test Case
-$list = new LinkedList();
+//Test Case 1
+$list1 = new LinkedList();
 
-$a = $list->insertAtEnd('A');
-$b = $list->insertAtEnd('B');
-$c = $list->insertAtEnd('C');
-$d = $list->insertAtEnd('D');
-$e = $list->insertAtEnd('E');
-$f = $list->insertAtEnd('F');
-$g = $list->insertAtEnd('G');
-$h = $list->insertAtEnd('H');
-//$i = $list->insertAfter('I', 6);
+$a = $list1->insertAtBegining('A');
+$b = $list1->insertAtBegining('B');
+$c = $list1->insertAtBegining('C');
+$d = $list1->insertAtBegining('D');
+$e = $list1->insertAtBegining('E');
+$f = $list1->insertAtBegining('F');
+$g = $list1->insertAtBegining('G');
+$h = $list1->insertAtBegining('H');
+
+//Test Case 2
+$list2 = new LinkedList();
+
+$i = $list2->insertAtEnd('A');
+$j = $list2->insertAtEnd('B');
+$k = $list2->insertAtEnd('C');
+$l = $list2->insertAtEnd('D');
+$m = $list2->insertAtEnd('E');
+$n = $list2->insertAtEnd('F');
+$o = $list2->insertAtEnd('G');
+$p = $list2->insertAtEnd('H');
 
 
-$list->print($a);
-//var_dump($list);
+$list1->print();
+echo "\n";
+$list2->print();
+
 /*Expected Output
 
+    H->G->F->E->D->C->B->A
     A->B->C->D->E->F->G->H
 
-    Insert at the begiinig, end and at a node
 
 */
 

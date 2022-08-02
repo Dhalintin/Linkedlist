@@ -16,6 +16,4 @@ class Recursion
 
 }
 
-$a = new Recursion(5);
-$a->factorial(10);
-var_dump($a);
+
