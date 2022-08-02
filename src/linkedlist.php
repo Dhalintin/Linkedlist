@@ -10,26 +10,48 @@ class Node
         $this->value = $value;
         $this->next = $next;
     }
+
 }
 
-class LinkedList{
-    //Initilalizing the  Node value to a nullable node type
-    public ?Node $head = null;
 
-    //Function to add value to the linkedlist
-    public function addValue($value): Node
+class LinkedList{
+    
+    public function __construct(public $head = null){}
+
+    //Function to add value to the begining of the linkedlist
+    public function insertAtEnd($value):Node
     {
         if (!$this->head) {
-            $this->head = $node = new Node($value, $this->head);
+            $this->head = $node = new Node($value);
             $this->tail ??= $node; // Store node as tail if tail is empty.
          
             return $node;
         }
-        
-        return $this->insertAfter($value, $this->tail);
-        
+
+        return $this->insert($value, $this->tail);
+
     }
 
+    //Function to add value to the begining of the linkedlist
+    public function insertAtBegining($value):Node
+    {
+        $this->head = $node = new Node($value, $this->head);
+ 
+        return $node;
+    }
+
+    public function insert($value, $position): Node
+    {
+        $position->next = $node = new Node($value, $position->next);
+    
+        // Update tail if we append a new node after it.
+        if ($position === $this->tail) {
+            $this->tail = $node;
+        }
+    
+        return $node;
+    }
+    
     //Function to Print out value 
     public function print()
     {
@@ -43,37 +65,48 @@ class LinkedList{
         }
     }
 
-    public function insertAfter($value, Node $position): Node
+    
+    //Printing recurssively 
+    public function printR($head)
     {
-        $position->next = $node = new Node($value, $position->next);
-    
-        // Update tail if we append a new node after it.
-        if ($position === $this->tail) {
-            $this->tail = $node;
+        $node = $this->head;
+
+        if(!$node === $this->tail) {
+            echo "Null";
+            $node = $node->next;
+            return; 
         }
-    
-        return $node;
+        
+        echo "{$node->value}->";
+
+        return $this->printR($node->next);
     }
+
+    
 }
 
 
 //Test Case
 $list = new LinkedList();
- 
-$a = $list->addValue('A');
-$b = $list->addValue('B');
-$c = $list->addValue('C');
-$d = $list->addValue('D');
-$e = $list->addValue('E');
-$f = $list->addValue('F');
-$g = $list->addValue('G');
-$h = $list->addValue('H');
+
+$a = $list->insertAtEnd('A');
+$b = $list->insertAtEnd('B');
+$c = $list->insertAtEnd('C');
+$d = $list->insertAtEnd('D');
+$e = $list->insertAtEnd('E');
+$f = $list->insertAtEnd('F');
+$g = $list->insertAtEnd('G');
+$h = $list->insertAtEnd('H');
+//$i = $list->insertAfter('I', 6);
 
 
-$list->print(); 
+$list->print($a);
+//var_dump($list);
 /*Expected Output
 
-    H->G->F->E->D->C->B->A
+    A->B->C->D->E->F->G->H
+
+    Insert at the begiinig, end and at a node
 
 */
 
