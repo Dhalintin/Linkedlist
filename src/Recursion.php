@@ -2,18 +2,28 @@
 
 class Recursion
 {
-    
-    public function __construct(public int $value){
-        $this->value = $value;
-    }
 
     public function factorial($value)
     {
-        if($value-1 != 0)return;
+        if($value == 1 || $value == 0) return $value;
 
-        return $this->factorial($value) * $this->factorial($value - 1);
+        return $value * $this->factorial($value - 1);
     }
 
 }
+
+$fact = new Recursion();
+$a = $fact->factorial(5);
+$b = $fact->factorial(6);
+$c = $fact->factorial(7);
+$d = $fact->factorial(8);
+
+
+echo $a."\n";
+echo $b."\n";
+echo $c."\n";
+echo $d."\n";
+
+
 
 
