@@ -12,6 +12,7 @@ class Recursion
 
 }
 
+//Test Cases
 $fact = new Recursion();
 $a = $fact->factorial(5);
 $b = $fact->factorial(6);
@@ -24,6 +25,14 @@ echo $b."\n";
 echo $c."\n";
 echo $d."\n";
 
+
+/*
+    Expected Output
+    120
+    720
+    5040
+    40320
+*/
 
 
 

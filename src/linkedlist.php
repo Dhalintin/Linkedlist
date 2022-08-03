@@ -4,7 +4,6 @@ class Node
 {
     public $value;
     public $next;
-    public $arr;
 
     public function __construct($value, $next = null)
     {
