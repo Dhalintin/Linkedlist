@@ -2,36 +2,41 @@
 
 class Recursion
 {
-
     public function factorial($value)
+    {
+        if($value == 1 || $value == 0) return 1;
+        
+        return $value * $this->factorial($value - 1);
+    }
+
+    public function fib($value)
     {
         if($value == 1 || $value == 0) return $value;
 
-        return $value * $this->factorial($value - 1);
+        return $this->fib($value-1) + $this->fib($value-2);
     }
+
+    public function printFactorial($val)
+    {
+        echo $val."\n";
+    }
+
 
 }
 
 //Test Cases
 $fact = new Recursion();
 $a = $fact->factorial(5);
-$b = $fact->factorial(6);
-$c = $fact->factorial(7);
-$d = $fact->factorial(8);
+$b = $fact->fib(5);
 
-
-echo $a."\n";
-echo $b."\n";
-echo $c."\n";
-echo $d."\n";
+$fact -> printFactorial($a);
+$fact -> printFactorial($b);
 
 
 /*
     Expected Output
-    120
-    720
-    5040
-    40320
+    120 
+    5
 */
 
 

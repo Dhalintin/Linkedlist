@@ -13,14 +13,9 @@ class Node
 
 }
 
-
 class LinkedList{
     
     public function __construct(public $head = null){}
-
-    /* 
-        Insert Functions
-    */
 
       //Function to add value to the begining of the linkedlist
       public function insertAtBegining($value):Node
@@ -35,33 +30,13 @@ class LinkedList{
     //Function to add value to the end of the linkedlist
     public function insertAtEnd($value)
     {
-        //$this->insertAtEndR($this->head, $value);
-        if($this->head)
-        {
-            $curr = $this->head;
-            $prev = null;
-
-            while($curr)
-            {
-                $prev = $curr;
-                $curr = $curr->next;
-            }
-
-            $node = new Node($value);
-            $prev->next = $node;
-        }
-        else
-        {
-            $this->head = $node = new Node($value, $this->head);
-            return $node;
-        }
+        $curr = $this->head;
         
+        return $this->insertAtEndR($curr, $value);
     }
 
-    public function insertAtEndR($curr, $value)
+    private function insertAtEndR($curr, $value)
     {
-        $curr = $this->head;
-
         if($curr == null){
             return new Node($value);
         }
@@ -85,9 +60,30 @@ class LinkedList{
                     $this->head = $node;
                 }
             }
+
+            $prev = $curr;
+            $curr = $curr->next;
+            $position--;
         }
     
         return $node;
+    }
+
+    public function insertR($value, $index)
+    {
+        $curr = $this->head;
+
+        return $this->insrt($curr, $value, $index);
+    }
+
+    private function insrt($curr, $value, $index)
+    {
+        if($index == 0){
+            return new Node($value, $curr);
+        }
+
+        $curr->next = $this->insrt($curr->next, $value, $index - 1);
+        return $curr;
     }
     
     /*
@@ -97,14 +93,11 @@ class LinkedList{
     public function print()
     {
         return $this->printR($this->head);
-
     }
 
     //Printing recurssively 
     public function printR($node)
-    {
-       
-        
+    {   
         if($node === null) {
             echo "Null";
             return; 
@@ -112,34 +105,8 @@ class LinkedList{
 
         echo "{$node->value}->";
 
-      
-
         return $this->printR($node->next);
-        
     }
-
-    /*
-
-    public function makeArray($node)
-    {
-        $arr = array();
-
-        if($node === null) {
-            return; 
-        }
-
-        $arr[$i] = $node->value;
-
-        return $this->makeArray(node->next);
-    }
-
-    */
-
-    /*
-        End of print function
-    */
-
-    
 }
 
 //Test Case 2
@@ -150,22 +117,18 @@ $h = $list2->insertAtBegining('Alpha');
 $i = $list2->insertAtEnd('A');
 $j = $list2->insertAtEnd('B');
 $k = $list2->insertAtEnd('C');
-$l = $list2->insertAtEnd('D');
-$m = $list2->insertAtEnd('E');
-$n = $list2->insertAtEnd('F');
-$o = $list2->insertAtEnd('G');
-//$p = $list2->insert('H', 0);
+$l = $list2->insertAtEnd('H');
+$m = $list2->insert('D', 4);
+$n = $list2->insert('E', 5);
+$o = $list2->insertR('F', 6);
+$p = $list2->insertR('G', 7);
 
 
 $list2 -> print();
 
-var_dump($list2);
-
 /*Expected Output
 
-    H->G->F->E->D->C->B->A
-    A->B->C->D->E->F->G->H
-
+    Alpha->A->B->C->D->E->F->G->H
 
 */
 
